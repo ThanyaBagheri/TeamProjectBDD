@@ -1,9 +1,23 @@
-@HomeScenarios
-Feature: HomePage Scenarios
+Feature: Home Page Scenarios
+  Background:
+    Given I enter "Username"
+    And I enter "Password"
+    And I click on "Login" button
 
   @IN-1
-  Scenario: Verify title of page should be "Interview App"
-    When I enter "test@yahoo.com"
-    When I enter "test123"
-    And I click button "Login"
-    Then verify the title is "Interview App"
+  Scenario: Verify title of the page is "interview App"
+    Then Verify that "Interview App" is the title of the page
+
+  @IN-2
+  Scenario: When i sign in as a user i should be able to see only "Sign out" button from nav bar User should not have access to "Manage Access" button
+    Then Verify button "Sign out" is displayed
+
+  @IN-3
+  Scenario: When I log in as a user there should always be 3 dashboards present.
+    Then Verify button "All Topics" is displayed
+    Then Verify button "Coding" is displayed
+    Then Verify button "Soft Skills" is displayed
+
+  @IN-4
+  Scenario: As a user I should have an option to add a statement in Do's and Dont's section
+    Then I click on "add do" button
