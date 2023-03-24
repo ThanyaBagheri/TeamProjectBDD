@@ -1,46 +1,81 @@
 package step_definitions;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.BrowserUtils;
+import utils.ConfigReader;
 
 public class HomeSteps {
     HomePage page;
     LoginPage loginPage;
-
-    public HomeSteps(){
+    public HomeSteps()
+    {
         page = new HomePage();
         loginPage = new LoginPage();
     }
-    @When("I enter {string}")
-    public void i_enter(String field) {
-        switch (field) {
-            case "test@yahoo.com":
-                BrowserUtils.sendKeys(loginPage.userNameField, field);
+
+    @Given("I enter {string}")
+    public void i_enter_in(String inputString)
+    {
+        switch (inputString.toLowerCase())
+        {
+            case "username":
+                BrowserUtils.sendKeys(loginPage.usernameField,
+                        ConfigReader.readProperty("config.properties", inputString.toLowerCase()));
                 break;
-            case "test123":
-                BrowserUtils.sendKeys(loginPage.passwordField, field);
+            case "password":
+                BrowserUtils.sendKeys(loginPage.passwordField,
+                        ConfigReader.readProperty("config.properties", inputString.toLowerCase()));
                 break;
             default:
-                System.out.println("Invalid username");
-                Assert.fail();
+                Assert.fail("Invalid Field!");
         }
     }
-
-    @When("I click button {string}")
-        public void i_click_button(String button) {
-            switch (button.toLowerCase()){
-                case "login":
-                    BrowserUtils.click(loginPage.loginBtn);
-            }
+    @When("I click on {string} button")
+    public void i_click_on_button(String btn)
+    {
+        switch(btn.toLowerCase())
+        {
+            case "login":
+                BrowserUtils.click(loginPage.logInBtn);
+                break;
+            default:
+                Assert.fail("Invalid Button!");
         }
 
-        @Then("verify the title is {string}")
-        public void verify_the_title_is(String title) {
-        BrowserUtils.switchToNewWindow();
-        BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(),title);
+    }
+    @Then("Verify that {string} is the title of the page")
+    public void verify_that_is_the_title_of_the_page(String title)
+    {
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
+    }
+
+
+    @Then("Verify button {string} is displayed")
+    public void verifyButtonIsDisplayed(String button) {
+        BrowserUtils.waitForElementVisibility(page.signOutBtn);
+        switch (button){
+            case "Sign out":
+                BrowserUtils.isDisplayed(page.signOutBtn);
+                break;
+            case "All Topics":
+                BrowserUtils.isDisplayed(page.allTopicsBtn);
+                break;
+
+            case "Coding":
+                BrowserUtils.isDisplayed(page.codingBtn);
+                break;
+
+            case "Soft Skills":
+                BrowserUtils.isDisplayed(page.softSkillsBtn);
+                break;
+            default:
+                Assert.fail("Invalid button");
+
         }
+    }
 }

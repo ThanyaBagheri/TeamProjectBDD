@@ -11,13 +11,13 @@ public class LoginPage {
     }
 
     @FindBy(name = "email")
-    public WebElement userNameField;
+    public WebElement usernameField;
 
     @FindBy(name = "password")
     public WebElement passwordField;
 
     @FindBy(css = "button[type='submit']")
-    public WebElement loginBtn;
+    public WebElement logInBtn;
 
 }
 
