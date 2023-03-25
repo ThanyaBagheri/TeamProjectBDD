@@ -34,6 +34,9 @@ public class HomeSteps {
                 BrowserUtils.sendKeys(loginPage.passwordField,
                         ConfigReader.readProperty("config.properties", inputString.toLowerCase()));
                 break;
+            case "this is my questions":
+                BrowserUtils.sendKeys(page.questionInputField,inputString);
+                break;
             default:
                 Assert.fail("Invalid Field!");
         }
@@ -53,6 +56,15 @@ public class HomeSteps {
                 BrowserUtils.switchToNewWindow();
                 BrowserUtils.click(manageAccessPage.actionBtn);
                 break;
+            case "coding":
+                BrowserUtils.click(page.codingBtn);
+                break;
+            case "enter new question":
+                BrowserUtils.click(page.enterNewQuestionBtn);
+                break;
+            case "enter":
+
+                BrowserUtils.click(page.questionEnterBtn);
             default:
                 Assert.fail("Invalid Button!");
         }
@@ -90,6 +102,15 @@ public class HomeSteps {
             default:
                 Assert.fail("Invalid button");
 
+        }
+    }
+
+    @Then("Verify {string} is displayed")
+    public void verifyIsDisplayed(String text) {
+        switch (text){
+            case "this is my question":
+                BrowserUtils.getText(page.questionText);
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.questionText),text);
         }
     }
 }

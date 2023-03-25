@@ -22,3 +22,12 @@ Feature: Home Page Scenarios
   @IN-4
   Scenario: As a user I should have an option to add a statement in Do's and Dont's section
     Then I click on "add do" button
+
+
+    @IN-5 
+    Scenario: As a user I need an option in dashboards like "Coding" and Soft Skills" Question content should accept letter , number and any special characters.
+      When I click on "Coding" button
+      And I click on "Enter new question" button
+      And I enter "this is my questions"
+      And I click on "Enter" button
+      Then Verify "text" is displayed
