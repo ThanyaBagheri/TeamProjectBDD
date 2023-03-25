@@ -6,16 +6,19 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.ManageAccessPage;
 import utils.BrowserUtils;
 import utils.ConfigReader;
 
 public class HomeSteps {
     HomePage page;
     LoginPage loginPage;
+    ManageAccessPage manageAccessPage;
     public HomeSteps()
     {
         page = new HomePage();
         loginPage = new LoginPage();
+        manageAccessPage = new ManageAccessPage();
     }
 
     @Given("I enter {string}")
@@ -23,11 +26,11 @@ public class HomeSteps {
     {
         switch (inputString.toLowerCase())
         {
-            case "username":
+            case "username", "adminuser":
                 BrowserUtils.sendKeys(loginPage.usernameField,
                         ConfigReader.readProperty("config.properties", inputString.toLowerCase()));
                 break;
-            case "password":
+            case "password", "adminpassword":
                 BrowserUtils.sendKeys(loginPage.passwordField,
                         ConfigReader.readProperty("config.properties", inputString.toLowerCase()));
                 break;
@@ -42,6 +45,13 @@ public class HomeSteps {
         {
             case "login":
                 BrowserUtils.click(loginPage.logInBtn);
+                break;
+            case "manage access":
+                BrowserUtils.click(manageAccessPage.manageAccessBtn);
+                break;
+            case "action":
+                BrowserUtils.switchToNewWindow();
+                BrowserUtils.click(manageAccessPage.actionBtn);
                 break;
             default:
                 Assert.fail("Invalid Button!");
@@ -72,6 +82,10 @@ public class HomeSteps {
 
             case "Soft Skills":
                 BrowserUtils.isDisplayed(page.softSkillsBtn);
+                break;
+
+            case "Add User":
+                BrowserUtils.isDisplayed(manageAccessPage.addUserBtn);
                 break;
             default:
                 Assert.fail("Invalid button");
