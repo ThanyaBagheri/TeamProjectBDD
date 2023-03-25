@@ -27,4 +27,16 @@ public class HomePage {
 
     @FindBy(xpath = "div[class='col-md-3 dont'] button[class='btn btn-success badge-pill newbtn mb-3']")
     public WebElement addDonOptionBtn;
+
+    @FindBy(xpath = "//button[text()='Enter new question ']")
+    public WebElement enterNewQuestionBtn;
+
+    @FindBy(id = "question")
+    public WebElement questionInputField;
+
+    @FindBy(className = "btn badge-pill btn-primary mb-1")
+    public WebElement questionEnterBtn;
+
+    @FindBy(linkText = "this is my questions   ")
+    public WebElement questionText;
 }

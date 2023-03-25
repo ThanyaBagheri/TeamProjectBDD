@@ -22,3 +22,6 @@ Feature: Home Page Scenarios
   @IN-4
   Scenario: As a user I should have an option to add a statement in Do's and Dont's section
     Then I click on "add do" button
+
+
+
