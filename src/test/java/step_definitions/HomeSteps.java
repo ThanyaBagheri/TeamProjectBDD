@@ -4,10 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import pages.CodingPage;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.ManageAccessPage;
+import pages.*;
 import utils.BrowserUtils;
 import utils.ConfigReader;
 
@@ -16,12 +13,14 @@ public class HomeSteps {
     LoginPage loginPage;
     ManageAccessPage manageAccessPage;
     CodingPage codingPage;
+    MSoftSkillsPage mSoftSkillsPage;
     public HomeSteps()
     {
         page = new HomePage();
         loginPage = new LoginPage();
         manageAccessPage = new ManageAccessPage();
         codingPage = new CodingPage();
+        mSoftSkillsPage = new MSoftSkillsPage();
     }
 
     @Given("I enter {string}")
@@ -37,6 +36,11 @@ public class HomeSteps {
                 BrowserUtils.sendKeys(loginPage.passwordField,
                         ConfigReader.readProperty("config.properties", inputString.toLowerCase()));
                 break;
+            case "this is my questions":
+
+                BrowserUtils.sendKeys(mSoftSkillsPage.yourQuestionField,inputString);
+           BrowserUtils.sleep(5000);
+           break;
             default:
                 Assert.fail("Invalid Field!");
         }
@@ -60,10 +64,13 @@ public class HomeSteps {
                 BrowserUtils.click(page.codingBtn);
                 break;
             case "enter new question":
-                BrowserUtils.click(codingPage.enterNewQuestionBtn);
+                BrowserUtils.click(mSoftSkillsPage.enterNewQuestionBtn);
                 break;
             case "enter":
                 BrowserUtils.click(codingPage.questionEnterBtn);
+                break;
+            case "soft skills":
+                BrowserUtils.click(page.softSkillsBtn);
                 break;
             default:
                 Assert.fail("Invalid Button!");
