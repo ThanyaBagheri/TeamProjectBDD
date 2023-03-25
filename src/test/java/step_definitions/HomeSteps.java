@@ -5,10 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import pages.CodingPage;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.ManageAccessPage;
+import pages.*;
 import utils.BrowserUtils;
 import utils.ConfigReader;
 
@@ -17,12 +14,14 @@ public class HomeSteps {
     LoginPage loginPage;
     ManageAccessPage manageAccessPage;
     CodingPage codingPage;
+    MSoftSkillsPage mSoftSkillsPage;
     public HomeSteps()
     {
         page = new HomePage();
         loginPage = new LoginPage();
         manageAccessPage = new ManageAccessPage();
         codingPage = new CodingPage();
+        mSoftSkillsPage = new MSoftSkillsPage();
     }
 
     @Given("I enter {string}")
@@ -37,6 +36,9 @@ public class HomeSteps {
             case "password", "adminpassword":
                 BrowserUtils.sendKeys(loginPage.passwordField,
                         ConfigReader.readProperty("config.properties", inputString.toLowerCase()));
+                break;
+            case "this is my questions":
+                BrowserUtils.sendKeys(mSoftSkillsPage.yourQuestionField, inputString);
                 break;
             default:
                 Assert.fail("Invalid Field!");
@@ -60,10 +62,13 @@ public class HomeSteps {
                 BrowserUtils.click(page.codingBtn);
                 break;
             case "enter new question":
-                BrowserUtils.click(codingPage.enterNewQuestionBtn);
+                BrowserUtils.click(mSoftSkillsPage.enterNewQuestionBtn);
                 break;
             case "enter":
                 BrowserUtils.click(codingPage.questionEnterBtn);
+                break;
+            case "soft skills":
+                BrowserUtils.click(page.softSkillsBtn);
                 break;
             case "enter in do section":
                 BrowserUtils.click(page.addDoEnterBtn);
@@ -73,6 +78,9 @@ public class HomeSteps {
                 break;
             case "sign out":
                 BrowserUtils.click(page.signOutBtn);
+                break;
+            case "add do":
+                BrowserUtils.click(page.addDoOptionBtn);
                 break;
             default:
                 Assert.fail("Invalid Button!");
@@ -96,21 +104,23 @@ public class HomeSteps {
             case "All Topics":
                 BrowserUtils.isDisplayed(page.allTopicsBtn);
                 break;
-
             case "Coding":
                 BrowserUtils.isDisplayed(page.codingBtn);
                 break;
-
             case "Soft Skills":
                 BrowserUtils.isDisplayed(page.softSkillsBtn);
                 break;
-
             case "Add User":
                 BrowserUtils.isDisplayed(manageAccessPage.addUserBtn);
                 break;
-
             case "Manage Access":
                 BrowserUtils.isDisplayed(manageAccessPage.manageAccessBtn);
+                break;
+            case "Add do":
+                BrowserUtils.isDisplayed(page.addDoOptionBtn);
+                break;
+            case "Add don't":
+                BrowserUtils.isDisplayed(page.addDonOptionBtn);
                 break;
             default:
                 Assert.fail("Invalid button");

@@ -29,7 +29,9 @@ Feature: Home Page Scenarios
     Given I enter "Username"
     And I enter "Password"
     And I click on "Login" button
-    Then I click on "add do" button
+    Then Verify button "Add do" is displayed
+    Then Verify button "Add don't" is displayed
+
 
   @IN-10
   Scenario: When admin logs in "Manage Access" button should be visible
@@ -43,7 +45,7 @@ Feature: Home Page Scenarios
     Given I enter "adminuser"
     And I enter "adminpassword"
     And I click on "Login" button
-    Then I click on "add do" button
+    Then I click on "Add do" button
     And I enter "new do" in do section
     And I click on "Enter in do section" button
     Then Verify button "edit in do section" is enabled
