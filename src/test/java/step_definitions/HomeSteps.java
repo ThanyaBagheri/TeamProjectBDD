@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import pages.CodingPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.ManageAccessPage;
@@ -14,11 +15,13 @@ public class HomeSteps {
     HomePage page;
     LoginPage loginPage;
     ManageAccessPage manageAccessPage;
+    CodingPage codingPage;
     public HomeSteps()
     {
         page = new HomePage();
         loginPage = new LoginPage();
         manageAccessPage = new ManageAccessPage();
+        codingPage = new CodingPage();
     }
 
     @Given("I enter {string}")
@@ -52,6 +55,15 @@ public class HomeSteps {
             case "action":
                 BrowserUtils.switchToNewWindow();
                 BrowserUtils.click(manageAccessPage.actionBtn);
+                break;
+            case "coding":
+                BrowserUtils.click(page.codingBtn);
+                break;
+            case "enter new question":
+                BrowserUtils.click(codingPage.enterNewQuestionBtn);
+                break;
+            case "enter":
+                BrowserUtils.click(codingPage.questionEnterBtn);
                 break;
             default:
                 Assert.fail("Invalid Button!");
