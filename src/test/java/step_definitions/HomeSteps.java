@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import pages.CodingPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.ManageAccessPage;
@@ -14,11 +15,13 @@ public class HomeSteps {
     HomePage page;
     LoginPage loginPage;
     ManageAccessPage manageAccessPage;
+    CodingPage codingPage;
     public HomeSteps()
     {
         page = new HomePage();
         loginPage = new LoginPage();
         manageAccessPage = new ManageAccessPage();
+        codingPage = new CodingPage();
     }
 
     @Given("I enter {string}")
@@ -33,9 +36,6 @@ public class HomeSteps {
             case "password", "adminpassword":
                 BrowserUtils.sendKeys(loginPage.passwordField,
                         ConfigReader.readProperty("config.properties", inputString.toLowerCase()));
-                break;
-            case "this is my questions":
-                BrowserUtils.sendKeys(page.questionInputField,inputString);
                 break;
             default:
                 Assert.fail("Invalid Field!");
@@ -60,11 +60,11 @@ public class HomeSteps {
                 BrowserUtils.click(page.codingBtn);
                 break;
             case "enter new question":
-                BrowserUtils.click(page.enterNewQuestionBtn);
+                BrowserUtils.click(codingPage.enterNewQuestionBtn);
                 break;
             case "enter":
-
-                BrowserUtils.click(page.questionEnterBtn);
+                BrowserUtils.click(codingPage.questionEnterBtn);
+                break;
             default:
                 Assert.fail("Invalid Button!");
         }
@@ -102,15 +102,6 @@ public class HomeSteps {
             default:
                 Assert.fail("Invalid button");
 
-        }
-    }
-
-    @Then("Verify {string} is displayed")
-    public void verifyIsDisplayed(String text) {
-        switch (text){
-            case "this is my question":
-                BrowserUtils.getText(page.questionText);
-                BrowserUtils.assertEquals(BrowserUtils.getText(page.questionText),text);
         }
     }
 }
