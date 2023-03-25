@@ -27,4 +27,16 @@ public class HomePage {
 
     @FindBy(xpath = "div[class='col-md-3 dont'] button[class='btn btn-success badge-pill newbtn mb-3']")
     public WebElement addDonOptionBtn;
+
+    @FindBy(id = "inputArea1")
+    public WebElement addDoInputField;
+
+    @FindBy(xpath = "//button[@class='btn btn-outline-white btn-sm btn-success']")
+    public WebElement addDoEnterBtn;
+
+    @FindBy(xpath = "//div[text()='new do']/following-sibling::div/span/button")
+    public WebElement deleteBtnInDoSection;
+
+    @FindBy(xpath = "//div[text()='new do']/following-sibling::div/span/button[2]")
+    public WebElement editBtnInDoSection;
 }

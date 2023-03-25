@@ -1,5 +1,6 @@
 package step_definitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -87,8 +88,38 @@ public class HomeSteps {
             case "Add User":
                 BrowserUtils.isDisplayed(manageAccessPage.addUserBtn);
                 break;
+
+            case "Manage Access":
+                BrowserUtils.isDisplayed(manageAccessPage.manageAccessBtn);
+                break;
             default:
                 Assert.fail("Invalid button");
+
+        }
+    }
+
+    @And("I enter {string} in do section")
+    public void iEnterInDoSection(String input) {
+        switch (input.toLowerCase()){
+            case "new do":
+                BrowserUtils.sendKeys(page.addDoInputField,input);
+                break;
+            default:
+                System.out.println("Invalid input");
+        }
+    }
+
+    @Then("Verify button {string} is enabled")
+    public void verifyButtonIsEnabled(String button) {
+        switch (button){
+            case "edit":
+                BrowserUtils.isEnabled(page.editBtnInDoSection);
+                break;
+            case "delete":
+                BrowserUtils.isEnabled(page.deleteBtnInDoSection);
+                break;
+            default:
+                System.out.println("Invalid button");
 
         }
     }
