@@ -5,6 +5,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import pages.CodingPage;
+import pages.MSoftSkillsPage;
 import utils.BrowserUtils;
 
 import java.util.List;
@@ -12,10 +13,12 @@ import java.util.List;
 public class CodingSteps
 {
     CodingPage page;
+    MSoftSkillsPage mSoftSkillsPage;
 
     public CodingSteps()
     {
         page = new CodingPage();
+        mSoftSkillsPage = new MSoftSkillsPage();
     }
 
     @When("I fill in {string} text")
@@ -23,11 +26,17 @@ public class CodingSteps
     {
         switch(text.toLowerCase())
         {
-            case "is this paul's question?":
+            case "is this paul's coding question?":
                 BrowserUtils.sendKeys(page.yourQuestionField, text);
                 break;
-            case "this is new paul question.":
+            case "this is new paul coding question.":
                 BrowserUtils.sendKeys(page.textArea, text);
+                break;
+            case "is this paul's soft skills question?":
+                BrowserUtils.sendKeys(mSoftSkillsPage.yourQuestionField, text);
+                break;
+            case "this is new paul soft skills question.":
+                BrowserUtils.sendKeys(mSoftSkillsPage.textArea, text);
                 break;
             default:
                 Assert.fail("Invalid text field!");
