@@ -10,5 +10,13 @@ Feature: Coding Page Scenarios
       And I click on "Enter new question" button
       And I fill in "Is this Paul's question?" text
       And I click on "Enter" button
-      Then Verify "Delete" button is enabled
-      And Verify "Edit" button is enabled
+#      Then Verify "Is this Paul's question?" text is displayed
+      When I click on "Edit" button
+      And I fill in "This is new Paul question." text
+      And I click on "Checked" button
+      Then Verify "This is new Paul question." text is displayed
+      When I click on "Delete" button
+      Then Verify no "This is new Paul question." question is in the question list
+
+
+

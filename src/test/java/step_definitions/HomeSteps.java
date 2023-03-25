@@ -65,6 +65,15 @@ public class HomeSteps {
             case "enter":
                 BrowserUtils.click(codingPage.questionEnterBtn);
                 break;
+            case "edit":
+                BrowserUtils.click(codingPage.editBtn);
+                break;
+            case "checked":
+                BrowserUtils.click(codingPage.checkBtn);
+                break;
+            case "delete":
+                BrowserUtils.click(codingPage.deleteBtn);
+                break;
             default:
                 Assert.fail("Invalid Button!");
         }

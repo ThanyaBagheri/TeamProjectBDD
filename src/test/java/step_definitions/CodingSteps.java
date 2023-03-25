@@ -3,8 +3,11 @@ package step_definitions;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import pages.CodingPage;
 import utils.BrowserUtils;
+
+import java.util.List;
 
 public class CodingSteps
 {
@@ -22,6 +25,9 @@ public class CodingSteps
         {
             case "is this paul's question?":
                 BrowserUtils.sendKeys(page.yourQuestionField, text);
+                break;
+            case "this is new paul question.":
+                BrowserUtils.sendKeys(page.textArea, text);
                 break;
             default:
                 Assert.fail("Invalid text field!");
@@ -41,6 +47,41 @@ public class CodingSteps
                 break;
             default:
                 Assert.fail("Invalid button!");
+        }
+    }
+
+    @Then("Verify {string} text is displayed")
+    public void verifyTextIsDisplayed(String text)
+    {
+        switch (text.toLowerCase())
+        {
+            case "is this paul's question?":
+                BrowserUtils.assertEquals(page.questionText.getText(), text);
+                break;
+            case "this is new paul question.":
+                BrowserUtils.waitForElementVisibility(page.questionText);
+                System.out.println("exptected: " + text);
+                System.out.println("actual: " + page.questionText.getText());
+                BrowserUtils.assertTrue(page.questionText.getText().contains(text));
+                break;
+            default:
+                Assert.fail("Invalid text!");
+        }
+    }
+
+    @Then("Verify no {string} question is in the question list")
+    public void verifyNoQuestionIsInTheQuestionList(String question)
+    {
+        switch(question)
+        {
+            case "this is new paul question.":
+                boolean isThere = false;
+                for (WebElement each : page.questions)
+                {
+                    if (each.getText().contains(question))
+                        isThere = true;
+                }
+                BrowserUtils.assertFalse(isThere);
         }
     }
 }

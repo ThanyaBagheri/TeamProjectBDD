@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.BrowserUtils;
 
+import java.util.List;
+
 public class CodingPage
 {
     public CodingPage()
@@ -26,4 +28,15 @@ public class CodingPage
 
     @FindBy (xpath = "//button[@class='btn btn-sm-outline-warning']")
     public WebElement editBtn;
+
+    @FindBy (xpath = "//div[@class='col-md-8']//p[1]")
+    public WebElement questionText;
+
+    @FindBy (xpath = "//textarea[@name='newQuestion']")
+    public WebElement textArea;
+
+    @FindBy (xpath = "//div[@class='col-md-8']")
+    public List<WebElement> questions;
+    @FindBy (xpath = "//button[@class='btn btn-sm-outline-success']")
+    public WebElement checkBtn;
 }
