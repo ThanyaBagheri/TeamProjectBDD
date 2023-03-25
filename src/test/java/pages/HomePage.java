@@ -39,4 +39,16 @@ public class HomePage {
 
     @FindBy(xpath = "//div[text()='new do']/following-sibling::div/span/button[2]")
     public WebElement editBtnInDoSection;
+
+    @FindBy(xpath = "//input[@placeholder='New dashboard']")
+    public WebElement newDashboardField;
+
+    @FindBy(xpath = "//button[@class='btn btn-primary mb-2']")
+    public WebElement addNewDashBoardBtn;
+
+    @FindBy(xpath = "//button[normalize-space()='new dashboard']")
+    public WebElement newDashboardDB;
+
+    @FindBy(xpath = "//div[@class='topics']//div[3]//div[1]")
+    public WebElement deleteNewDashboard;
 }

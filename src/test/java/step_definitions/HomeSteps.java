@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import pages.CodingPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.ManageAccessPage;
@@ -15,11 +16,13 @@ public class HomeSteps {
     HomePage page;
     LoginPage loginPage;
     ManageAccessPage manageAccessPage;
+    CodingPage codingPage;
     public HomeSteps()
     {
         page = new HomePage();
         loginPage = new LoginPage();
         manageAccessPage = new ManageAccessPage();
+        codingPage = new CodingPage();
     }
 
     @Given("I enter {string}")
@@ -51,8 +54,25 @@ public class HomeSteps {
                 BrowserUtils.click(manageAccessPage.manageAccessBtn);
                 break;
             case "action":
-                BrowserUtils.switchToNewWindow();
                 BrowserUtils.click(manageAccessPage.actionBtn);
+                break;
+            case "coding":
+                BrowserUtils.click(page.codingBtn);
+                break;
+            case "enter new question":
+                BrowserUtils.click(codingPage.enterNewQuestionBtn);
+                break;
+            case "enter":
+                BrowserUtils.click(codingPage.questionEnterBtn);
+                break;
+            case "enter in do section":
+                BrowserUtils.click(page.addDoEnterBtn);
+                break;
+            case "add":
+                BrowserUtils.click(page.addNewDashBoardBtn);
+                break;
+            case "sign out":
+                BrowserUtils.click(page.signOutBtn);
                 break;
             default:
                 Assert.fail("Invalid Button!");
@@ -112,15 +132,36 @@ public class HomeSteps {
     @Then("Verify button {string} is enabled")
     public void verifyButtonIsEnabled(String button) {
         switch (button){
-            case "edit":
+            case "edit in do section":
                 BrowserUtils.isEnabled(page.editBtnInDoSection);
                 break;
-            case "delete":
+            case "delete in do section":
                 BrowserUtils.isEnabled(page.deleteBtnInDoSection);
                 break;
             default:
                 System.out.println("Invalid button");
 
         }
+    }
+
+    @When("I enter new dashboard {string}")
+    public void iEnterNewDashboard(String input) {
+        switch (input.toLowerCase()){
+            case "new dashboard":
+                BrowserUtils.sendKeys(page.newDashboardField,input);
+                break;
+            default:
+                System.out.println("Invalid input");
+        }
+    }
+
+    @Then("Verify new dashboard is displayed")
+    public void verifyNewDashboardIsDisplayed() {
+        BrowserUtils.isDisplayed(page.newDashboardDB);
+    }
+
+    @And("I delete a new dashboard")
+    public void iDeleteNewDashboard() {
+        BrowserUtils.click(page.deleteNewDashboard);
     }
 }

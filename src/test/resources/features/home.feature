@@ -45,17 +45,24 @@ Feature: Home Page Scenarios
     And I click on "Login" button
     Then I click on "add do" button
     And I enter "new do" in do section
-    And I click on "Enter" button
-    Then Verify button "edit" is enabled
-    Then Verify button "delete" is enabled
-
+    And I click on "Enter in do section" button
+    Then Verify button "edit in do section" is enabled
+    Then Verify button "delete in do section" is enabled
 
   @IN-12
   Scenario: Admin should have an ability to add a new dashboard. When a new dashboard is created, regular user should be able to see it on their end
     Given I enter "adminuser"
     And I enter "adminpassword"
     And I click on "Login" button
-
-
-
-
+    When I enter new dashboard "new dashboard"
+    And I click on "Add" button
+    And I click on "Sign out" button
+    And I enter "Username"
+    And I enter "Password"
+    And I click on "Login" button
+    Then Verify new dashboard is displayed
+    And I click on "Sign out" button
+    Given I enter "adminuser"
+    And I enter "adminpassword"
+    And I click on "Login" button
+    And I delete a new dashboard
