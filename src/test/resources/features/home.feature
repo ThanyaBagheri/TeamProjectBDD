@@ -1,3 +1,4 @@
+@HomepageScenarios
 Feature: Home Page Scenarios
   Background:
     Given I enter "Username"

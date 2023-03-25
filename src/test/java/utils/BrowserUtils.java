@@ -19,20 +19,18 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class BrowserUtils {
-    private BrowserUtils() {
-    }
-
-    ;
+    private BrowserUtils(){};
     private static WebDriver driver = null;
 
-    public static WebDriver getDriver() {
+    public static WebDriver getDriver(){
         if (driver == null) {
-//            if (ConfigReader.readProperty("config.properties", "runInSaucelabs")
-//                    .equalsIgnoreCase("true")) {
-//                getRemoteDriver();
-//            } else {
+            if (ConfigReader.readProperty("config.properties","runInSourcelabs")
+                    .equalsIgnoreCase("true"))
+            {
+                getRemoteDriver();
+            } else {
                 initializeDriver("chrome");
-//            }
+            }
         }
         return driver;
     }
