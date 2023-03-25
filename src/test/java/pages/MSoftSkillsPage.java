@@ -15,7 +15,7 @@ public class MSoftSkillsPage
     @FindBy(xpath = "//button[text()='Enter new question ']")
     public WebElement enterNewQuestionBtn;
 
-    @FindBy(xpath = "//div/form/div[1]/input")
+    @FindBy(id = "question")
     public WebElement yourQuestionField;
 
     @FindBy(xpath = "//button[text()='Enter']")

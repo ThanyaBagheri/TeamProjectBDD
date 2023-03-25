@@ -25,7 +25,7 @@ public class HomePage {
     @FindBy(xpath = "//button[text()='Add do ']")
     public WebElement addDoOptionBtn;
 
-    @FindBy(xpath = "div[class='col-md-3 dont'] button[class='btn btn-success badge-pill newbtn mb-3']")
+    @FindBy(xpath = "//div[@class='col-md-3 dont']//button[@class='btn btn-success badge-pill newbtn mb-3']")
     public WebElement addDonOptionBtn;
 
     @FindBy(xpath = "//button[text()='Enter new question ']")
@@ -39,4 +39,28 @@ public class HomePage {
 
     @FindBy(linkText = "this is my questions   ")
     public WebElement questionText;
+
+    @FindBy(id = "inputArea1")
+    public WebElement addDoInputField;
+
+    @FindBy(xpath = "//button[@class='btn btn-outline-white btn-sm btn-success']")
+    public WebElement addDoEnterBtn;
+
+    @FindBy(xpath = "//div[text()='new do']/following-sibling::div/span/button")
+    public WebElement deleteBtnInDoSection;
+
+    @FindBy(xpath = "//div[text()='new do']/following-sibling::div/span/button[2]")
+    public WebElement editBtnInDoSection;
+
+    @FindBy(xpath = "//input[@placeholder='New dashboard']")
+    public WebElement newDashboardField;
+
+    @FindBy(xpath = "//button[@class='btn btn-primary mb-2']")
+    public WebElement addNewDashBoardBtn;
+
+    @FindBy(xpath = "//button[normalize-space()='new dashboard']")
+    public WebElement newDashboardDB;
+
+    @FindBy(xpath = "//div[@class='topics']//div[3]//div[1]")
+    public WebElement deleteNewDashboard;
 }
