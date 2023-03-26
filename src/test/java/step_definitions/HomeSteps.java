@@ -1,5 +1,6 @@
 package step_definitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -37,6 +38,8 @@ public class HomeSteps {
                         ConfigReader.readProperty("config.properties", inputString.toLowerCase()));
                 break;
             case "this is my questions":
+                BrowserUtils.sendKeys(mSoftSkillsPage.yourQuestionField, inputString);
+                break;
                 BrowserUtils.sendKeys(mSoftSkillsPage.yourQuestionField,inputString);
                 BrowserUtils.sleep(5000);
                 break;
@@ -56,20 +59,31 @@ public class HomeSteps {
                 BrowserUtils.click(manageAccessPage.manageAccessBtn);
                 break;
             case "action":
-                BrowserUtils.switchToNewWindow();
                 BrowserUtils.click(manageAccessPage.actionBtn);
                 break;
             case "coding":
                 BrowserUtils.click(page.codingBtn);
                 break;
             case "enter new question":
-                BrowserUtils.click(codingPage.enterNewQuestionBtn);
+                BrowserUtils.click(mSoftSkillsPage.enterNewQuestionBtn);
                 break;
             case "enter":
                 BrowserUtils.click(codingPage.questionEnterBtn);
                 break;
             case "soft skills":
                 BrowserUtils.click(page.softSkillsBtn);
+                break;
+            case "enter in do section":
+                BrowserUtils.click(page.addDoEnterBtn);
+                break;
+            case "add":
+                BrowserUtils.click(page.addNewDashBoardBtn);
+                break;
+            case "sign out":
+                BrowserUtils.click(page.signOutBtn);
+                break;
+            case "add do":
+                BrowserUtils.click(page.addDoOptionBtn);
                 break;
             case "edit":
                 BrowserUtils.click(codingPage.editBtn);
@@ -99,21 +113,74 @@ public class HomeSteps {
             case "All Topics":
                 BrowserUtils.isDisplayed(page.allTopicsBtn);
                 break;
-
             case "Coding":
                 BrowserUtils.isDisplayed(page.codingBtn);
                 break;
-
             case "Soft Skills":
                 BrowserUtils.isDisplayed(page.softSkillsBtn);
                 break;
-
             case "Add User":
                 BrowserUtils.isDisplayed(manageAccessPage.addUserBtn);
+                break;
+            case "Manage Access":
+                BrowserUtils.isDisplayed(manageAccessPage.manageAccessBtn);
+                break;
+            case "Add do":
+                BrowserUtils.isDisplayed(page.addDoOptionBtn);
+                break;
+            case "Add don't":
+                BrowserUtils.isDisplayed(page.addDonOptionBtn);
                 break;
             default:
                 Assert.fail("Invalid button");
 
         }
+    }
+
+    @And("I enter {string} in do section")
+    public void iEnterInDoSection(String input) {
+        switch (input.toLowerCase()){
+            case "new do":
+                BrowserUtils.sendKeys(page.addDoInputField,input);
+                break;
+            default:
+                System.out.println("Invalid input");
+        }
+    }
+
+    @Then("Verify button {string} is enabled")
+    public void verifyButtonIsEnabled(String button) {
+        switch (button){
+            case "edit in do section":
+                BrowserUtils.isEnabled(page.editBtnInDoSection);
+                break;
+            case "delete in do section":
+                BrowserUtils.isEnabled(page.deleteBtnInDoSection);
+                break;
+            default:
+                System.out.println("Invalid button");
+
+        }
+    }
+
+    @When("I enter new dashboard {string}")
+    public void iEnterNewDashboard(String input) {
+        switch (input.toLowerCase()){
+            case "new dashboard":
+                BrowserUtils.sendKeys(page.newDashboardField,input);
+                break;
+            default:
+                System.out.println("Invalid input");
+        }
+    }
+
+    @Then("Verify new dashboard is displayed")
+    public void verifyNewDashboardIsDisplayed() {
+        BrowserUtils.isDisplayed(page.newDashboardDB);
+    }
+
+    @And("I delete a new dashboard")
+    public void iDeleteNewDashboard() {
+        BrowserUtils.click(page.deleteNewDashboard);
     }
 }
