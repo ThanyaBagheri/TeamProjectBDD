@@ -26,6 +26,9 @@ public class MSoftSkillsPage
 
     @FindBy (xpath = "//button[@class='btn btn-sm-outline-warning']")
     public WebElement editBtn;
+
+    @FindBy (xpath = "//div[@class='col-md-8']//p[1]")
+    public WebElement questionText;
     @FindBy (xpath = "//textarea[@name='newQuestion']")
     public WebElement textArea;
 }

@@ -40,9 +40,6 @@ public class HomeSteps {
             case "this is my questions":
                 BrowserUtils.sendKeys(mSoftSkillsPage.yourQuestionField, inputString);
                 break;
-                BrowserUtils.sendKeys(mSoftSkillsPage.yourQuestionField,inputString);
-                BrowserUtils.sleep(5000);
-                break;
             default:
                 Assert.fail("Invalid Field!");
         }
@@ -90,6 +87,9 @@ public class HomeSteps {
                 break;
             case "checked":
                 BrowserUtils.click(codingPage.checkBtn);
+                break;
+            case "delete":
+                BrowserUtils.click(codingPage.deleteBtn);
                 break;
             default:
                 Assert.fail("Invalid Button!");

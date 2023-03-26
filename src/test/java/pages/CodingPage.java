@@ -37,6 +37,7 @@ public class CodingPage
 
     @FindBy (xpath = "//div[@class='col-md-8']")
     public List<WebElement> questions;
+
     @FindBy (xpath = "//button[@class='btn btn-sm-outline-success']")
     public WebElement checkBtn;
 }
