@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.BrowserUtils;
 
+import java.util.List;
+
 public class MSoftSkillsPage
 {
     public MSoftSkillsPage()
@@ -31,4 +33,7 @@ public class MSoftSkillsPage
     public WebElement questionText;
     @FindBy (xpath = "//textarea[@name='newQuestion']")
     public WebElement textArea;
+
+    @FindBy (xpath = "//div[@class='col-md-8']")
+    public List<WebElement> questions;
 }

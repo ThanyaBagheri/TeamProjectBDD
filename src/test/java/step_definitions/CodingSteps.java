@@ -69,7 +69,7 @@ public class CodingSteps
                 break;
             case "this is new paul coding question.":
                 BrowserUtils.waitForElementVisibility(page.questionText);
-                System.out.println("exptected: " + text);
+                System.out.println("text should contain: " + text);
                 System.out.println("actual: " + page.questionText.getText());
                 BrowserUtils.assertTrue(page.questionText.getText().contains(text));
                 break;
@@ -78,7 +78,7 @@ public class CodingSteps
                 break;
             case "this is new paul soft skills question.":
                 BrowserUtils.waitForElementVisibility(mSoftSkillsPage.questionText);
-                System.out.println("exptected: " + text);
+                System.out.println("text should contain: " + text);
                 System.out.println("actual: " + mSoftSkillsPage.questionText.getText());
                 BrowserUtils.assertTrue(mSoftSkillsPage.questionText.getText().contains(text));
                 break;
@@ -90,16 +90,28 @@ public class CodingSteps
     @Then("Verify no {string} question is in the question list")
     public void verifyNoQuestionIsInTheQuestionList(String question)
     {
+        boolean isThere;
+        System.out.println(question);
         switch(question)
         {
-            case "this is new paul question.":
-                boolean isThere = false;
+            case "this is new paul coding question.":
+                isThere = false;
                 for (WebElement each : page.questions)
                 {
                     if (each.getText().contains(question))
                         isThere = true;
                 }
                 BrowserUtils.assertFalse(isThere);
+                break;
+            case "this is new paul soft skills question.":
+                isThere = false;
+                for (WebElement each : mSoftSkillsPage.questions)
+                {
+                    if (each.getText().contains(question))
+                        isThere = true;
+                }
+                BrowserUtils.assertFalse(isThere);
+                break;
         }
     }
 }
