@@ -15,7 +15,7 @@ public class MSoftSkillsPage
     @FindBy(xpath = "//button[text()='Enter new question ']")
     public WebElement enterNewQuestionBtn;
 
-    @FindBy(id = "question")
+    @FindBy(name = "question")
     public WebElement yourQuestionField;
 
     @FindBy(xpath = "//button[text()='Enter']")
@@ -26,4 +26,6 @@ public class MSoftSkillsPage
 
     @FindBy (xpath = "//button[@class='btn btn-sm-outline-warning']")
     public WebElement editBtn;
+    @FindBy (xpath = "//textarea[@name='newQuestion']")
+    public WebElement textArea;
 }
