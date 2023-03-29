@@ -64,14 +64,23 @@ public class CodingSteps
     {
         switch (text.toLowerCase())
         {
-            case "is this paul's question?":
+            case "is this paul's coding question?":
                 BrowserUtils.assertEquals(page.questionText.getText(), text);
                 break;
-            case "this is new paul question.":
+            case "this is new paul coding question.":
                 BrowserUtils.waitForElementVisibility(page.questionText);
                 System.out.println("exptected: " + text);
                 System.out.println("actual: " + page.questionText.getText());
                 BrowserUtils.assertTrue(page.questionText.getText().contains(text));
+                break;
+            case "is this paul's soft skills question?":
+                BrowserUtils.assertEquals(mSoftSkillsPage.questionText.getText(), text);
+                break;
+            case "this is new paul soft skills question.":
+                BrowserUtils.waitForElementVisibility(mSoftSkillsPage.questionText);
+                System.out.println("exptected: " + text);
+                System.out.println("actual: " + mSoftSkillsPage.questionText.getText());
+                BrowserUtils.assertTrue(mSoftSkillsPage.questionText.getText().contains(text));
                 break;
             default:
                 Assert.fail("Invalid text!");
