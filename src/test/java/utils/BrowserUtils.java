@@ -61,7 +61,7 @@ public class BrowserUtils {
                 WebDriverManager.iedriver().setup();
                 driver = new InternetExplorerDriver();
         }
-//        driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get(ConfigReader.readProperty("config.properties", "url"));
     }
@@ -179,7 +179,7 @@ public class BrowserUtils {
 
     public static void assertTrue(boolean result) {
         //TODO: apply report -> logInfo("Expected: " + result);
-        CucumberLogUtils.logInfo("Expected: " + result, false);
+        CucumberLogUtils.logInfo("Actual: " + result, false);
         Assert.assertTrue(result);
     }
 

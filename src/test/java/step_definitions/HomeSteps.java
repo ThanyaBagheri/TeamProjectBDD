@@ -91,6 +91,9 @@ public class HomeSteps {
             case "delete":
                 BrowserUtils.click(codingPage.deleteBtn);
                 break;
+            case "search":
+                BrowserUtils.click(codingPage.searchBtn);
+                break;
             default:
                 Assert.fail("Invalid Button!");
         }
