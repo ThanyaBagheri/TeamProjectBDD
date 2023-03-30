@@ -35,9 +35,15 @@ public class CodingPage
     @FindBy (xpath = "//textarea[@name='newQuestion']")
     public WebElement textArea;
 
-    @FindBy (xpath = "//div[@class='col-md-8']")
+    @FindBy (xpath = "//div[@class='col-md-8']//p")
     public List<WebElement> questions;
 
     @FindBy (xpath = "//button[@class='btn btn-sm-outline-success']")
     public WebElement checkBtn;
+
+    @FindBy (name = "search")
+    public WebElement searchField;
+
+    @FindBy (xpath = "//button[@class='btn btn-primary']")
+    public WebElement searchBtn;
 }
